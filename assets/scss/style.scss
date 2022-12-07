@@ -1,0 +1,44 @@
+$component-name: 'c-circular-progress';
+
+.#{$component-name} {
+
+
+    @for $i from 0 through 100 {
+        $deg: 90deg+(3.6 * $i);
+
+        &--#{$i} {
+
+            $direction: if($i < 51, right, left);
+            $color: if($i < 51, #BDBDBD, #0752F1);
+
+            background: linear-gradient(to #{$direction},
+                #{$color} 50%,
+                transparent 50%,
+                transparent),
+            linear-gradient(#{$deg},
+                #0752F1 50%,
+                #BDBDBD 50%,
+            );
+
+            &::before {
+                content: quote("#{$i}");
+            }
+        }
+    }
+
+    display: block;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+
+    &::before {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        transform: scale(0.8);
+        background-color: white;
+        width: 100%;
+        border-radius: 50%;
+    }
+}
